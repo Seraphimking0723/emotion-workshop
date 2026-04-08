@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>我的情緒百寶箱 | 親子情緒教育工作坊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: #fffaf7;
+      color: #253245;
+      line-height: 1.5;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    /* header / hero */
+    .hero {
+      background: linear-gradient(180deg, #fff4eb 0%, #ffffff 58%, #eefcf5 100%);
+      padding: 72px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 16px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid #ffd7bf;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      margin: 12px 0 0;
+      font-size: 28px;
+      color: #ef7d34;
+      font-weight: 700;
+    }
+
+    .hero-text {
+      font-size: 18px;
+      line-height: 1.9;
+      color: #4e5c6d;
+      margin-top: 24px;
+    }
+
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .tag {
+      background: #ffffff;
+      border: 1px solid #e8edf2;
+      border-radius: 18px;
+      padding: 10px 14px;
+      font-size: 14px;
+    }
+
+    .highlight-box, .card, .step-card, .final-box {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 12px 28px rgba(37, 50, 69, 0.08);
+    }
+
+    .highlight-box {
+      padding: 28px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .feature-item {
+      background: #fff8f2;
+      border-radius: 18px;
+      padding: 18px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .highlight-text {
+      margin-top: 18px;
+      line-height: 1.8;
+      color: #556273;
+    }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .section-soft {
+      background: #f8fbff;
+    }
+
+    .dark-section {
+      background: #1f2937;
+      color: #ffffff;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .intro-grid p {
+      line-height: 1.9;
+      color: #dbe3ee;
+    }
+
+    .section-label {
+      color: #ef7d34;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .section-label.light {
+      color: #fdc58d;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 28px;
+    }
+
+    .section-title.small {
+      font-size: 30px;
+    }
+
+    .monster-grid, .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 22px;
+    }
+
+    .card p {
+      line-height: 1.85;
+      color: #566476;
+    }
+
+    .monster-card {
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .monster-emoji {
+      font-size: 52px;
+      margin-bottom: 12px;
+    }
+
+    .yellow {
+      background: linear-gradient(135deg, #fff0ad, #ffd57c);
+    }
+
+    .red {
+      background: linear-gradient(135deg, #ffc1bc, #ff9c99);
+    }
+
+    .blue {
+      background: linear-gradient(135deg, #cbe7ff, #96c8ff);
+    }
+
+    .gray {
+      background: linear-gradient(135deg, #e2e8f0, #b8c2cf);
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .step-card {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 20px;
+    }
+
+    .step-number {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: #ffe4cf;
+      color: #ef7d34;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .step-time {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      background: #f1f5f9;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #5b6677;
+    }
+
+    .step-content p {
+      line-height: 1.9;
+      color: #566476;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .material-list {
+      padding-left: 20px;
+      line-height: 2;
+      color: #566476;
+    }
+
+    .calm-card {
+      background: linear-gradient(135deg, #dff7eb, #edf8ff);
+    }
+
+    .quote-box {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 20px;
+      padding: 18px;
+      line-height: 1.9;
+      margin: 18px 0;
+      font-size: 18px;
+    }
+
+    .final-box {
+      margin-top: 28px;
+      background: #1f2937;
+      color: white;
+      padding: 28px;
+    }
+
+    .final-box p {
+      color: #dbe3ee;
+      line-height: 1.9;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid, .intro-grid, .two-column, .monster-grid, .outcome-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hero {
+        padding-top: 52px;
+      }
+
+      .hero-grid, .intro-grid, .two-column, .monster-grid, .outcome-grid, .feature-grid, .step-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 40px;
+      }
+
+      .hero-subtitle {
+        font-size: 22px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .step-number {
+        width: 56px;
+        height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">親子情緒教育 × AI 動畫沈浸式引導</div>
+        <h1 class="hero-title">我的情緒百寶箱</h1>
+        <p class="hero-subtitle">親子遊戲工作坊（AI 動畫沈浸版）</p>
+        <p class="hero-text">
+          把孩子熟悉的螢幕世界，變成一場能看、能摸、能動、能練習的情緒學習旅程。透過 AI 情緒小怪獸、實體遊戲與家長陪伴，協助 2–5 歲幼兒辨識情緒、練習表達，也學會慢慢平靜下來。
+        </p>
+        <div class="tag-group">
+          <span class="tag">適合年齡｜2–5 歲幼兒與家長</span>
+          <span class="tag">活動形式｜親子工作坊</span>
+          <span class="tag">核心主題｜情緒辨識 × 情緒調節 × 衝突表達</span>
+        </div>
+      </div>
+      <div class="highlight-box">
+        <h2>AI 多媒體亮點</h2>
+        <div class="feature-grid">
+          <div class="feature-item">🖥️ AI 情緒小怪獸動畫</div>
+          <div class="feature-item">🌸 平靜魔法視覺圖</div>
+          <div class="feature-item">📦 實體情緒臉譜紙箱</div>
+          <div class="feature-item">🫧 呼吸與吹泡泡練習</div>
+        </div>
+        <p class="highlight-text">
+          核心設計概念：讓孩子先在螢幕中認識情緒，再把情緒帶進真實互動場景，最後透過家長陪伴完成表達與調節。
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="section dark-section">
+    <div class="container intro-grid">
+      <div>
+        <p class="section-label light">設計目標</p>
+        <h2>讓情緒變得看得見、玩得到、學得會</h2>
+      </div>
+      <p>
+        不是單純教孩子「不要哭、不要生氣」，而是陪他們先認出情緒，再用具體動作與畫面練習如何安頓自己。
+      </p>
+      <p>
+        同時讓家長理解：螢幕不一定只是被動娛樂，也能成為親子共學與情緒引導的媒介。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="section-label">Emotion Monsters</p>
+      <h2 class="section-title">四隻專屬情緒小怪獸</h2>
+      <div class="monster-grid">
+        <div class="card">
+          <div class="monster-card yellow">
+            <div class="monster-emoji">😊</div>
+            <h3>黃色開心怪</h3>
+          </div>
+          <p>用明亮表情與動作，幫助孩子辨認開心與喜歡的感受。</p>
+        </div>
+        <div class="card">
+          <div class="monster-card red">
+            <div class="monster-emoji">😤</div>
+            <h3>紅色生氣龍</h3>
+          </div>
+          <p>帶孩子看見生氣、學會停下來，練習踩踏與呼吸調節。</p>
+        </div>
+        <div class="card">
+          <div class="monster-card blue">
+            <div class="monster-emoji">😢</div>
+            <h3>藍色哭哭怪</h3>
+          </div>
+          <p>透過眼淚、聲音與安撫語句，讓孩子知道難過可以被理解。</p>
+        </div>
+        <div class="card">
+          <div class="monster-card gray">
+            <div class="monster-emoji">😨</div>
+            <h3>黑色害怕蟲</h3>
+          </div>
+          <p>把害怕具象化，陪孩子說出不安，也讓家長學會接住情緒。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <p class="section-label">Workshop Flow</p>
+      <h2 class="section-title">活動流程</h2>
+      <div class="steps-list">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <span class="step-time">約 5 分鐘</span>
+            <h3>前導活動｜螢幕裡的怪獸朋友</h3>
+            <p>親子先坐在螢幕前，透過 AI 生成的短動畫或圖卡認識四隻情緒小怪獸。講師帶領孩子揮手打招呼，建立熟悉感與期待感。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <span class="step-time">約 10 分鐘</span>
+            <h3>活動一｜怪獸跑到現實了！</h3>
+            <p>動畫中的怪獸消失後，實體情緒臉譜紙箱登場，讓孩子從觀看轉到觸摸與動作，搭配餵食彩色軟球遊戲做情緒辨識。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <span class="step-time">約 15 分鐘</span>
+            <h3>活動二｜跟著螢幕學魔法</h3>
+            <p>切換到 AI 生成的平靜魔法畫面，讓孩子看著生氣龍在蓮花旁深呼吸，再配合手偶、生氣墊與吹泡泡，學習實際的情緒調節。</p>
+          </div>
+        </div>
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <span class="step-time">約 15 分鐘</span>
+            <h3>活動三｜玩具保衛戰</h3>
+            <p>在情緒較穩定的狀態下，延續手偶與玩具互動，引導孩子練習說出「換」與「借我」，建立衝突中的表達能力。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+  
