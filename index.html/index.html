@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta name="google-site-verification" content="Nsy1XWXj6vcqX0K_h_y_yeBZGBv18Uw2_KSalKDRt1g" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的情緒百寶箱｜親子情緒教育工作坊</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#eef5f1;
+      --surface:rgba(255,255,255,.80);
+      --surface-strong:#ffffff;
+      --text:#1f2f2a;
+      --muted:#5f726c;
+      --line:#d6e2dc;
+      --primary:#2f4f4a;
+      --accent:#5f8f7b;
+      --accent-soft:#dcebe4;
+      --soft-green:#e6f1ec;
+      --dark:#213731;
+      --shadow:0 16px 38px rgba(20,40,35,.06);
+      --radius-xl:28px;
+      --radius-lg:20px;
+      --radius-md:14px;
+      --max-width:1180px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"Noto Sans TC","Microsoft JhengHei",sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,232,224,.72), transparent 28%),
+        radial-gradient(circle at top right, rgba(230,241,236,.85), transparent 30%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.7;
+      letter-spacing:.01em;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(var(--max-width), calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .section{
+      padding:80px 0;
+    }
+
+    .section-soft{
+      background:rgba(255,255,255,.42);
+      backdrop-filter:blur(8px);
+    }
+
+    .section-dark{
+      background:linear-gradient(180deg,#29443d 0%, #213731 100%);
+      color:#fff;
+    }
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(14px);
+      background:rgba(238,245,241,.85);
+      border-bottom:1px solid rgba(214,226,220,.8);
+    }
+
+    .nav-inner{
+      width:min(var(--max-width), calc(100% - 32px));
+      margin:0 auto;
+      padding:14px 0;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+    }
+
+    .brand{
+      font-weight:800;
+      color:var(--primary);
+      font-size:18px;
+      letter-spacing:.02em;
+    }
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      font-size:14px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .nav-links a:hover{
+      color:var(--primary);
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 16px;
+      border:1px solid rgba(95,143,123,.28);
+      background:rgba(255,255,255,.74);
+      border-radius:999px;
+      font-size:13px;
+      color:var(--primary);
+      margin-bottom:20px;
+    }
+
+    .section-label{
+      display:inline-block;
+      margin-bottom:12px;
+      font-size:12px;
+      font-weight:700;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--accent);
+    }
+
+    .section-dark .section-label{
+      color:#b9d3c8;
+    }
+
+    .section-title{
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.2;
+      margin-bottom:18px;
+      letter-spacing:-.03em;
+    }
+
+    .section-desc{
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.95;
+      max-width:820px;
+    }
+
+    .section-dark .section-desc,
+    .section-dark p{
+      color:rgba(255,255,255,.84);
+    }
+
+    .hero{
+      padding:88px 0 68px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .hero-title{
+      font-size:clamp(42px,6vw,70px);
+      line-height:1.04;
+      letter-spacing:-.05em;
+      margin-bottom:14px;
+    }
+
+    .hero-subtitle{
+      font-size:clamp(20px,2.6vw,30px);
+      color:var(--accent);
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .hero-text{
+      font-size:18px;
+      line-height:1.95;
+      color:var(--muted);
+      max-width:720px;
+    }
+
+    .tag-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:28px;
+    }
+
+    .tag{
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.76);
+      font-size:13px;
+      color:#466158;
+    }
+
+    .btn-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 22px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:15px;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      opacity:.95;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,.78);
+      color:var(--primary);
+      border:1px solid var(--line);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-1px);
+    }
+
+    .panel,
+    .card,
+    .step-card,
+    .final-box,
+    .info-card{
+      background:var(--surface);
+      border:1px solid rgba(255,255,255,.72);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+
+    .panel{
+      border-radius:var(--radius-xl);
+      padding:24px;
+    }
+
+    .hero-visual{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+
+    .hero-visual-item{
+      background:rgba(255,255,255,.78);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:10px;
+      min-height:220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .hero-visual-item img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .intro-grid h2{
+      font-size:34px;
+      line-height:1.2;
+    }
+
+    .info-grid,
+    .outcome-grid,
+    .course-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+      margin-top:28px;
+    }
+
+    .course-grid.three{
+      grid-template-columns:repeat(3, 1fr);
+    }
+
+    .info-card,
+    .content-card{
+      padding:28px;
+      border-radius:var(--radius-lg);
+    }
+
+    .info-card h3,
+    .content-card h3{
+      font-size:28px;
+      margin-bottom:16px;
+    }
+
+    .material-list{
+      padding-left:20px;
+      color:var(--muted);
+      line-height:2;
+      font-size:15px;
+    }
+
+    .monster-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:22px;
+      margin-top:28px;
+    }
+
+    .card{
+      border-radius:var(--radius-lg);
+      padding:18px;
+    }
+
+    .monster-image{
+      aspect-ratio:4 / 4.8;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg,#f4f8f5 0%,#e6efe9 100%);
+      overflow:hidden;
+      margin-bottom:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .monster-image img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding:10px;
+    }
+
+    .monster-en{
+      display:inline-block;
+      font-size:12px;
+      font-weight:700;
+      color:var(--accent);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+
+    .monster-name{
+      font-size:20px;
+      margin-bottom:8px;
+    }
+
+    .card p,
+    .content-card p,
+    .info-card p{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.85;
+    }
+
+    .steps-list{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .step-card{
+      border-radius:var(--radius-lg);
+      padding:22px 24px;
+      display:grid;
+      grid-template-columns:86px 1fr;
+      gap:20px;
+    }
+
+    .step-index{
+      width:62px;
+      height:62px;
+      border-radius:16px;
+      background:var(--accent-soft);
+      color:var(--primary);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:18px;
+    }
+
+    .step-time{
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background:#edf5f1;
+      color:#4f655e;
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .step-card h3{
+      font-size:22px;
+      margin-bottom:8px;
+    }
+
+    .step-card p{
+      color:var(--muted);
+      line-height:1.9;
+    }
+
+    .two-column{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .quote-box{
+      border-left:4px solid var(--accent);
+      background:rgba(255,255,255,.8);
+      padding:20px;
+      border-radius:14px;
+      margin:18px 0;
+      color:#355048;
+      line-height:1.9;
+    }
+
+    .final-box{
+      margin-top:24px;
+      padding:28px;
+      border-radius:var(--radius-lg);
+      background:linear-gradient(135deg,#28433c 0%,#35574d 100%);
+      color:#fff;
+    }
+
+    .final-box h3{
+      font-size:24px;
+      margin-bottom:12px;
+    }
+
+    .final-box p{
+      color:rgba(255,255,255,.86);
+      line-height:1.95;
+    }
+
+    .signup-box{
+      text-align:center;
+    }
+
+    .signup-box p{
+      max-width:760px;
+      margin:0 auto;
+      color:rgba(255,255,255,.88);
+    }
+
+    footer{
+      padding:30px 0 50px;
+      color:var(--muted);
+    }
+
+    .footer-box{
+      border-top:1px solid var(--line);
+      padding-top:24px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:16px;
+      font-size:14px;
+    }
+
+    @media (max-width: 1024px){
+      .hero-grid,
+      .intro-grid,
+      .monster-grid,
+      .two-column,
+      .outcome-grid,
+      .info-grid,
+      .course-grid.three{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .monster-grid .card:last-child{
+        grid-column:span 2;
+      }
+    }
+
+    @media (max-width: 720px){
+      .nav-inner,
+      .hero-grid,
+      .intro-grid,
+      .monster-grid,
+      .two-column,
+      .outcome-grid,
+      .info-grid,
+      .course-grid,
+      .course-grid.three,
+      .step-card,
+      .hero-visual{
+        grid-template-columns:1fr;
+      }
+
+      .nav-inner{
+        display:block;
+      }
+
+      .nav-links{
+        margin-top:12px;
+        gap:12px;
+      }
+
+      .hero,
+      .section{
+        padding:56px 0;
+      }
+
+      .hero-title{
+        font-size:42px;
+      }
+
+      .monster-grid .card:last-child{
+        grid-column:auto;
+      }
+
+      .panel,
+      .card,
+      .content-card,
+      .step-card,
+      .final-box,
+      .info-card{
+        padding:22px;
+      }
+
+      .btn-group{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="brand">我的情緒百寶箱</div>
+      <div class="nav-links">
+        <a href="#info">活動資訊</a>
+        <a href="#course">課程內容</a>
+        <a href="#characters">角色介紹</a>
+        <a href="#flow">活動流程</a>
+        <a href="#schedule">時間表</a>
+        <a href="#signup">報名方式</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge">親子情緒教育 × AI 角色引導 × 沉浸式互動工作坊</div>
+        <h1 class="hero-title">我的情緒百寶箱</h1>
+        <p class="hero-subtitle">親子情緒教育工作坊｜AI 角色沉浸版</p>
+        <p class="hero-text">
+          以幼兒熟悉的視覺媒介作為入口，結合 AI 情緒角色、實體互動媒材與家長陪伴，引導孩子辨識、表達並安頓情緒，讓情緒教育從抽象提醒轉化為可以看見、可以練習，也可以延續到日常生活的學習經驗。
+        </p>
+        <div class="tag-group">
+          <span class="tag">適用對象｜2–4 歲幼兒與家長</span>
+          <span class="tag">活動形式｜親子互動工作坊</span>
+          <span class="tag">核心目標｜辨識・表達・調節</span>
+        </div>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="#signup">立即報名</a>
+          <a class="btn btn-secondary" href="#schedule">查看時間表</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="hero-visual">
+          <div class="hero-visual-item">
+            <img src="monster-happy.png" alt="黃色開心怪">
+          </div>
+          <div class="hero-visual-item">
+            <img src="monster-angry.png" alt="紅色生氣龍">
+          </div>
+          <div class="hero-visual-item">
+            <img src="monster-sad.png" alt="藍色哭哭怪">
+          </div>
+          <div class="hero-visual-item">
+            <img src="monster-fear.png" alt="黑色害怕蟲">
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="info">
+    <div class="container">
+      <span class="section-label">Event Information</span>
+      <h2 class="section-title">活動資訊</h2>
+      <p class="section-desc">
+        這是一場結合 AI 情緒角色、互動遊戲與家長陪伴的親子工作坊，讓幼兒在有安全感的情境裡學會辨識情緒、表達需求，並建立基礎的調節能力。
+      </p>
+
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>基本資料</h3>
+          <ul class="material-list">
+            <li>活動名稱：我的情緒百寶箱｜親子情緒教育工作坊</li>
+            <li>活動日期：2026 年 4 月 30 日（四）</li>
+            <li>活動時間：上午 15:00－17:00</li>
+            <li>活動地點：社區親子空間</li>
+          </ul>
+        </article>
+
+        <article class="info-card">
+          <h3>參與方式</h3>
+          <ul class="material-list">
+            <li>適合對象：2–4 歲幼兒與家長</li>
+            <li>活動名額：5 組親子</li>
+            <li>活動費用：免費</li>
+            <li>報名截止：2026 年 4 月 20 日</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container intro-grid">
+      <div>
+        <span class="section-label">Concept</span>
+        <h2>讓孩子先看見情緒，才學得會表達情緒</h2>
+      </div>
+      <p>
+        讓孩子透過角色、色彩與表情認出自己正在發生什麼，再慢慢練習說出來。
+      </p>
+      <p>
+        家長也不只是陪同參與，而是在過程中學會回應情緒的語言與方法，將活動中的引導轉化為日常生活可以重複使用的互動方式。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="course">
+    <div class="container">
+      <span class="section-label">Course Content</span>
+      <h2 class="section-title">課程內容</h2>
+      <p class="section-desc">
+        本課程結合 AI 情緒角色、親子互動遊戲與具體引導語，協助幼兒從辨識情緒到練習表達，再逐步建立調節能力。
+      </p>
+
+      <div class="course-grid three">
+        <article class="content-card">
+          <h3>情緒辨識</h3>
+          <p>透過角色圖像、顏色與表情特徵，幫助孩子認識開心、生氣、難過與害怕，建立基本情緒詞彙與感受連結。</p>
+        </article>
+
+        <article class="content-card">
+          <h3>情緒表達</h3>
+          <p>在親子互動與情境模擬中，練習說出「我不喜歡」「我想要」「我有點難過」等簡單句型，幫助孩子以語言代替哭鬧。</p>
+        </article>
+
+        <article class="content-card">
+          <h3>情緒調節</h3>
+          <p>透過吹泡泡、深呼吸、身體放鬆與平靜引導畫面，協助孩子學習在情緒升高時慢慢穩定下來。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="characters">
+    <div class="container">
+      <span class="section-label">AI Emotion Characters</span>
+      <h2 class="section-title">四位情緒角色設定</h2>
+      <p class="section-desc">
+        以清楚辨識、柔和風格與高一致性的角色設計，協助幼兒將情緒與表情、顏色、身體感受建立穩定連結。
+      </p>
+
+      <div class="monster-grid">
+        <article class="card">
+          <div class="monster-image">
+            <img src="monster-happy.png" alt="黃色開心怪">
+          </div>
+          <span class="monster-en">Joy</span>
+          <h3 class="monster-name">黃色開心怪</h3>
+          <p>以明亮、溫暖的視覺特徵呈現開心與安心，幫助孩子連結愉快、喜歡與被接住的情緒經驗。</p>
+        </article>
+
+        <article class="card">
+          <div class="monster-image">
+            <img src="monster-angry.png" alt="紅色生氣龍">
+          </div>
+          <span class="monster-en">Anger</span>
+          <h3 class="monster-name">紅色生氣龍</h3>
+          <p>保留情緒張力與力量感，讓孩子辨認生氣時的身體狀態，並學習停下來與重新呼吸的方法。</p>
+        </article>
+
+        <article class="card">
+          <div class="monster-image">
+            <img src="monster-sad.png" alt="藍色哭哭怪">
+          </div>
+          <span class="monster-en">Sadness</span>
+          <h3 class="monster-name">藍色哭哭怪</h3>
+          <p>透過柔軟、安靜與微垂的表情設計，協助孩子理解難過與失落，也讓照顧者更容易引導安撫。</p>
+        </article>
+
+        <article class="card">
+          <div class="monster-image">
+            <img src="monster-fear.png" alt="黑色害怕蟲">
+          </div>
+          <span class="monster-en">Fear</span>
+          <h3 class="monster-name">黑色害怕蟲</h3>
+          <p>將害怕轉化為可辨識、可陪伴的角色，協助孩子說出不安，並在互動中建立安全感與被保護的感受。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="flow">
+    <div class="container">
+      <span class="section-label">Workshop Flow</span>
+      <h2 class="section-title">活動流程</h2>
+      <p class="section-desc">
+        從螢幕角色引導開始，再延伸到實體操作與親子互動，讓孩子在可預期的節奏中，逐步建立對情緒的理解與表達能力。
+      </p>
+
+      <div class="steps-list">
+        <div class="step-card">
+          <div class="step-index">01</div>
+          <div>
+            <span class="step-time">約 10 分鐘</span>
+            <h3>前導引入｜螢幕裡的怪獸朋友</h3>
+            <p>透過 AI 角色短動畫或圖像投影，讓孩子與情緒角色建立第一印象，並以簡單問句與動作建立安全感與參與感。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">02</div>
+          <div>
+            <span class="step-time">約 20 分鐘</span>
+            <h3>角色進入現場｜情緒辨識互動</h3>
+            <p>將角色延伸到紙箱臉譜、軟球與分類遊戲，讓孩子從觀看進入觸摸與操作，建立情緒與表情、顏色、動作的連結。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">03</div>
+          <div>
+            <span class="step-time">約 30 分鐘</span>
+            <h3>平靜練習｜跟著角色慢下來</h3>
+            <p>搭配平靜畫面、吹泡泡與呼吸引導，將抽象的「冷靜一下」轉化為孩子可模仿的具體步驟。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">04</div>
+          <div>
+            <span class="step-time">約 30 分鐘</span>
+            <h3>情境表達｜玩具保衛戰</h3>
+            <p>透過角色與玩具情境，練習表達需求、輪流等待與簡單衝突對話，讓孩子在關係中學會更好的說法。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="schedule">
+    <div class="container">
+      <span class="section-label">Schedule</span>
+      <h2 class="section-title">活動時間表</h2>
+
+      <div class="steps-list">
+        <div class="step-card">
+          <div class="step-index">15:00</div>
+          <div>
+            <h3>報到與暖身</h3>
+            <p>親子入場、認識環境，透過簡單互動建立安全感與活動期待。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">15:10</div>
+          <div>
+            <h3>螢幕裡的怪獸朋友</h3>
+            <p>透過 AI 情緒角色圖像或動畫，帶孩子認識四種基本情緒。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">15:30</div>
+          <div>
+            <h3>情緒辨識互動遊戲</h3>
+            <p>用實體媒材與分類遊戲，讓孩子把情緒和表情、動作連結起來。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">16:00</div>
+          <div>
+            <h3>平靜練習與呼吸活動</h3>
+            <p>搭配角色引導與吹泡泡活動，練習在情緒升高時慢下來。</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-index">16:30</div>
+          <div>
+            <h3>情境表達與親子回饋</h3>
+            <p>透過玩具衝突情境，練習說出需求，並由家長進行陪伴回應。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-column">
+      <div class="panel content-card">
+        <span class="section-label">Materials</span>
+        <h3>所需材料</h3>
+        <ul class="material-list">
+          <li>四位 AI 情緒角色圖卡或短動畫</li>
+          <li>平靜情境視覺圖與引導語</li>
+          <li>投影設備或大螢幕顯示器</li>
+          <li>情緒臉譜紙箱、彩色軟球、手偶、生氣墊、泡泡道具</li>
+          <li>家長陪伴提示語卡</li>
+        </ul>
+      </div>
+
+      <div class="panel content-card">
+        <span class="section-label">Calming Script</span>
+        <h3>平靜引導語</h3>
+        <div class="quote-box">
+          我看到你現在有點不舒服，我們先不用急著變好。先跟著怪獸一起慢慢吸氣，再慢慢吐氣，讓身體先休息一下。
+        </div>
+        <p class="section-desc" style="max-width:none;">
+          引導語設計重點不是命令孩子停止情緒，而是陪伴孩子先安頓身體，再慢慢說出感受。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <span class="section-label">Expected Outcomes</span>
+      <h2 class="section-title">預期成效</h2>
+
+      <div class="outcome-grid">
+        <article class="panel content-card">
+          <h3>幼兒端</h3>
+          <p>孩子能更清楚辨認不同情緒角色與對應感受，並在具體引導下練習命名情緒、表達需求與使用初步調節策略，逐步建立情緒理解與自我安頓的基礎能力。</p>
+        </article>
+
+        <article class="panel content-card">
+          <h3>家長端</h3>
+          <p>家長能在參與過程中學會更具體的陪伴語言與回應方式，理解如何把螢幕角色與日常生活情境連結，延伸為可持續的親子互動方法。</p>
+        </article>
+      </div>
+
+      <div class="final-box">
+        <h3>方案特色</h3>
+        <p>
+          本方案將 AI 角色視覺、實體互動媒材與親子陪伴整合為一套具有教育邏輯的活動設計。它不只是讓孩子認識情緒，而是透過可見、可感、可模仿的體驗流程，讓情緒教育真正進入理解、表達與調節的實作階段。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="signup">
+    <div class="container">
+      <div class="final-box signup-box">
+        <span class="section-label" style="color:#d6ebe2;">Sign Up</span>
+        <h3>立即報名</h3>
+        <p>
+          歡迎家長與孩子一起走進情緒學習的第一步。透過角色、互動與陪伴，
+          讓孩子在安全的環境裡認識自己的感受，也讓家長找到更溫柔有效的回應方式。
+        </p>
+        <div class="btn-group" style="justify-content:center; margin-top:24px;">
+          <a class="btn btn-secondary" href="https://forms.gle/你的表單連結" target="_blank">填寫報名表</a>
+          <a class="btn btn-secondary" href="mailto:yourmail@example.com">聯絡主辦單位</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-box">
+        <div>主辦單位｜南華大學應用社會學系112級社學班</div>
+        <div>聯絡信箱｜seraphimking0723@gmail.com</div>
+        <div>聯絡電話｜0928-002-503</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
