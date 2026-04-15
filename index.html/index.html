@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>《我的情緒百寶箱》社會設計計畫書</title>
+  <style>
+    :root {
+      --green-dark: #06331A;
+      --green-main: #0b4a26;
+      --green-soft: #dfeee5;
+      --cream: #f8f6f1;
+      --wine: #5D0016;
+      --gold: #d4af37;
+      --text: #1f1f1f;
+      --text-soft: #555;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-main));
+      color: var(--white);
+      padding: 56px 20px 42px;
+      text-align: center;
+      border-bottom: 6px solid var(--wine);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.3rem;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 14px auto 0;
+      max-width: 900px;
+      color: #f3e8b5;
+      font-size: 1.05rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .nav-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      text-decoration: none;
+      color: var(--green-dark);
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+      background: #f5f7f5;
+      cursor: pointer;
+      font-size: 0.96rem;
+    }
+
+    .tab-btn:hover {
+      background: var(--green-soft);
+      color: var(--wine);
+      border-color: #c8ded0;
+    }
+
+    .tab-btn.active {
+      background: var(--green-dark);
+      color: var(--white);
+      border-color: var(--green-dark);
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 34px 18px 60px;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      background: var(--white);
+      margin-bottom: 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 34px 28px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--wine);
+      font-size: 1.6rem;
+      padding-left: 14px;
+      border-left: 6px solid var(--green-dark);
+    }
+
+    h3 {
+      color: var(--green-dark);
+      margin-top: 28px;
+      margin-bottom: 10px;
+      font-size: 1.15rem;
+      background: #f6faf7;
+      padding: 10px 14px;
+      border-radius: 10px;
+    }
+
+    p {
+      margin: 10px 0;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--text-soft);
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-main));
+      color: var(--white);
+      padding: 22px;
+      border-radius: 16px;
+      margin: 18px 0;
+    }
+
+    .highlight strong {
+      color: #ffe7a7;
+    }
+
+    .quote-box {
+      background: #f9f7f7;
+      border-left: 6px solid var(--wine);
+      padding: 18px 20px;
+      border-radius: 12px;
+      margin: 18px 0;
+      color: #3d2b2f;
+      font-weight: 600;
+    }
+
+    .grid-2,
+    .grid-3,
+    .monster-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .monster-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-top: 5px solid var(--wine);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+
+    .card h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--green-dark);
+      font-size: 1.05rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    ul, ol {
+      padding-left: 22px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .flow-step {
+      background: linear-gradient(180deg, #ffffff, #f6faf7);
+      border: 1px solid #dde9e0;
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+      min-height: 180px;
+    }
+
+    .flow-step .num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--wine);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .small {
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    .monster-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      padding: 12px 12px 0;
+    }
+
+    .monster-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+    }
+
+    .monster-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      display: block;
+      background: #eef3ef;
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .monster-info {
+      padding: 16px 8px 16px;
+    }
+
+    .monster-info h4 {
+      margin: 0 0 8px;
+      color: var(--green-dark);
+    }
+
+    .monster-info p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.96rem;
+    }
+
+    footer {
+      background: var(--green-dark);
+      color: #e9e3c3;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3,
+      .flow,
+      .monster-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      section {
+        padding: 24px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>《我的情緒百寶箱》</h1>
+    <p>AI 動畫沉浸式親子工作坊 × 幼兒情緒教育社會設計計畫書</p>
+  </header>
+
+  <nav>
+    <div class="nav-wrap">
+      <button class="tab-btn active" onclick="showTab('tab1', this)">計畫背景</button>
+      <button class="tab-btn" onclick="showTab('tab2', this)">問題分析</button>
+      <button class="tab-btn" onclick="showTab('tab3', this)">對應解方</button>
+      <button class="tab-btn" onclick="showTab('tab4', this)">情緒怪獸範例</button>
+      <button class="tab-btn" onclick="showTab('tab5', this)">利害關係人</button>
+      <button class="tab-btn" onclick="showTab('tab6', this)">設計流程</button>
+      <button class="tab-btn" onclick="showTab('tab7', this)">社會影響</button>
+      <button class="tab-btn" onclick="showTab('tab8', this)">結語</button>
+    </div>
+  </nav>
+
+  <main>
+    <div id="tab1" class="tab-panel active">
+      <section>
+        <h2>一、計畫背景與核心問題</h2>
+        <p class="lead">
+          在數位媒體高度滲透的環境中，2–5 歲幼兒已習慣透過卡通與影音認識世界，但這樣的學習多停留在觀看與模仿，缺乏進一步的情緒理解、身體感受與關係互動。孩子雖然看得懂角色情緒，卻未必能將這些情緒連結到自己的經驗中；家長雖然陪伴在旁，也常因缺乏引導工具而只能用制止、安撫或轉移注意力來處理孩子的情緒反應。
+        </p>
+
+        <div class="highlight">
+          <strong>核心斷裂：</strong><br />
+          幼兒的情緒經驗無法從被動觀看轉化為主動理解與調節，而親子之間也缺乏一套能共同使用的情緒語言與互動機制。
+        </div>
+
+        <h3>計畫願景</h3>
+        <ul>
+          <li>讓孩子從只是看到情緒走向能辨認自己的情緒。</li>
+          <li>讓家長從壓制情緒轉向陪孩子理解情緒。</li>
+          <li>建立一套可被家庭反覆使用的共同情緒語言。</li>
+          <li>把螢幕從單純娛樂媒介轉化成可延伸的情緒教育工具。</li>
+        </ul>
+      </section>
+    </div>
+
+    <div id="tab2" class="tab-panel">
+      <section>
+        <h2>二、問題分析</h2>
+
+        <div class="grid-3">
+          <div class="card">
+            <span class="tag">個體層</span>
+            <h4>幼兒情緒辨識與表達能力不足</h4>
+            <p>
+              2–5 歲幼兒的語言能力與抽象理解尚在發展中，雖然可以辨識簡單表情，卻不容易說出自己為什麼生氣、難過或害怕，因此常以哭鬧、退縮或攻擊行為來取代情緒表達。
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="tag">互動層</span>
+            <h4>親子之間缺乏共同的情緒語言</h4>
+            <p>
+              許多家長在面對孩子哭鬧時，會習慣說出不要哭、不可以生氣等語句。這類語言雖然出自關心，卻容易讓孩子把情緒理解為不能出現的東西。
+            </p>
+          </div>
+
+          <div class="card">
+            <span class="tag">結構層</span>
+            <h4>螢幕使用與情緒教育之間存在斷裂</h4>
+            <p>
+              現代幼兒已大量接觸動畫與影音內容，但多數內容停留在娛樂觀看，缺乏從螢幕內容轉換到真實生活練習的設計，無法形成具體可運用的情緒能力。
+            </p>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          真正的問題不是孩子情緒太多，而是他們還沒有被提供一套能理解、表達與調節情緒的方法。
+        </div>
+      </section>
+    </div>
+
+    <div id="tab3" class="tab-panel">
+      <section>
+        <h2>三、對應解方</h2>
+
+        <h3>1. 個體層解方：情緒角色化，降低表達門檻</h3>
+        <p>
+          透過 AI 情緒吉祥物設計，將抽象情緒轉化為孩子可辨識、可投射、可互動的角色，例如開心怪、生氣怪、難過怪、害怕怪、挫折怪與厭惡怪。孩子不需要直接說出複雜的情緒敘述，也能用角色來表達自己的內在狀態。
+        </p>
+
+        <h3>2. 互動層解方：建立親子共同語言</h3>
+        <p>
+          將情緒教育從單向糾正改為雙向對話。家長不再只說不要哭，而是學會透過角色語言詢問孩子，例如你是不是有一點難過怪、是不是生氣怪跑出來了。這樣的溝通方式能讓情緒從衝突對立，轉向理解與陪伴。
+        </p>
+
+        <h3>3. 結構層解方：建立螢幕到生活的轉換機制</h3>
+        <p>
+          本計畫不把動畫當作終點，而是當作入口。孩子先透過動畫辨識角色，再透過現場活動與實體道具進行情緒模擬與身體練習，最後延伸到家庭中的日常應用，形成從觀看、互動到內化的完整學習歷程。
+        </p>
+
+        <div class="highlight">
+          <strong>整體策略：</strong><br />
+          以 AI 角色降低理解門檻，以互動設計建立共同語言，以實體活動完成情緒教育的內化過程。
+        </div>
+      </section>
+    </div>
+
+    <!-- 只放你要改的這個區塊，其他不用動 -->
+
+<div id="tab4" class="tab-panel">
+  <section>
+    <h2>四、情緒怪獸範例圖</h2>
+    <p class="lead">
+      本計畫透過六種核心情緒怪獸，幫助幼兒將抽象的情緒轉化為具體可辨識的角色，建立情緒理解、表達與調節的基礎。
+    </p>
+
+    <div class="monster-grid">
+      <div class="monster-card">
+        <img src="images/monster-happy.png" alt="Happy Monster" />
+        <div class="monster-info">
+          <h4>開心怪（Happy）</h4>
+          <p>代表快樂、興奮與滿足，幫助孩子辨識正向情緒與分享喜悅。</p>
+        </div>
+      </div>
+
+      <div class="monster-card">
+        <img src="images/monster-sad.png" alt="Sad Monster" />
+        <div class="monster-info">
+          <h4>難過怪（Sad）</h4>
+          <p>代表失落、委屈與悲傷，讓孩子理解難過其實也是需要被接住的感受。</p>
+        </div>
+      </div>
+
+      <div class="monster-card">
+        <img src="images/monster-angry.png" alt="Angry Monster" />
+        <div class="monster-info">
+          <h4>生氣怪（Angry）</h4>
+          <p>代表憤怒、不滿與界線被碰觸時的反應，幫助孩子認識情緒爆發背後的需求。</p>
+        </div>
+      </div>
+
+      <div class="monster-card">
+        <img src="images/monster-fear.png" alt="Fear Monster" />
+        <div class="monster-info">
+          <h4>害怕怪（Fear）</h4>
+          <p>代表恐懼、緊張與不安，幫助孩子辨識需要安全感與陪伴的時刻。</p>
+        </div>
+      </div>
+
+      <div class="monster-card">
+        <img src="images/monster-frustration.png" alt="Frustration Monster" />
+        <div class="monster-info">
+          <h4>挫折怪（Frustration）</h4>
+          <p>代表卡住、做不到與不順利時的情緒，讓孩子理解失敗與努力的關係。</p>
+        </div>
+      </div>
+
+      <div class="monster-card">
+        <img src="images/monster-disgust.png" alt="Disgust Monster" />
+        <div class="monster-info">
+          <h4>厭惡怪（Disgust）</h4>
+          <p>代表排斥、不喜歡與想遠離的感受，幫助孩子建立偏好、身體界線與自我保護。</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+    <div id="tab5" class="tab-panel">
+      <section>
+        <h2>五、利害關係人分析</h2>
+
+        <div class="grid-2">
+          <div class="card">
+            <h4>幼兒</h4>
+            <p><strong>面臨的問題：</strong>不易辨識與表達情緒，常以行為取代表達。</p>
+            <p><strong>可獲得的價值：</strong>透過角色與活動，逐步學會認識、說出與調節情緒。</p>
+          </div>
+
+          <div class="card">
+            <h4>家長</h4>
+            <p><strong>面臨的問題：</strong>知道孩子有情緒，但不一定知道怎麼引導與回應。</p>
+            <p><strong>可獲得的價值：</strong>獲得一套容易操作的情緒陪伴工具與對話語言。</p>
+          </div>
+
+          <div class="card">
+            <h4>教育工作者／幼兒園</h4>
+            <p><strong>面臨的問題：</strong>情緒教育教材常偏抽象，且難以和家庭延續銜接。</p>
+            <p><strong>可獲得的價值：</strong>導入兼具趣味與實用性的教案與工作坊形式。</p>
+          </div>
+
+          <div class="card">
+            <h4>社區與政府單位</h4>
+            <p><strong>面臨的問題：</strong>早期情緒支持資源不足，家庭教育資源分布不均。</p>
+            <p><strong>可獲得的價值：</strong>建立可擴散、可進入不同社群的情緒教育模式。</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab6" class="tab-panel">
+      <section>
+        <h2>六、設計流程與服務流程</h2>
+
+        <h3>設計思考流程</h3>
+        <div class="grid-2">
+          <div class="card">
+            <h4>Empathize 同理</h4>
+            <p>觀察幼兒在情緒來臨時的反應方式，理解家長在陪伴過程中的焦慮與困難。</p>
+          </div>
+          <div class="card">
+            <h4>Define 定義</h4>
+            <p>重新界定問題，不是孩子愛哭鬧，而是缺乏適合幼兒與家庭共同使用的情緒學習媒介。</p>
+          </div>
+          <div class="card">
+            <h4>Ideate 發想</h4>
+            <p>以 AI 情緒角色、動畫敘事、實體互動與親子共學作為核心設計方向。</p>
+          </div>
+          <div class="card">
+            <h4>Prototype 原型</h4>
+            <p>發展動畫、角色卡、情緒道具、工作坊流程與家庭延伸教具，並持續修正。</p>
+          </div>
+        </div>
+
+        <h3>服務流程</h3>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="num">1</div>
+            <h4>動畫觀看</h4>
+            <p class="small">以故事與角色引發共感，讓孩子先辨識情緒樣貌。</p>
+          </div>
+          <div class="flow-step">
+            <div class="num">2</div>
+            <h4>角色互動</h4>
+            <p class="small">透過情緒卡、玩偶或道具進行投射與命名。</p>
+          </div>
+          <div class="flow-step">
+            <div class="num">3</div>
+            <h4>身體活動</h4>
+            <p class="small">加入呼吸、吹氣、模仿等活動，讓情緒被身體感受與調節。</p>
+          </div>
+          <div class="flow-step">
+            <div class="num">4</div>
+            <h4>親子對話</h4>
+            <p class="small">以共同語言回到家庭情境，形成可以延續的日常練習。</p>
+          </div>
+        </div>
+
+        <div class="quote-box">
+          感知情緒 → 命名情緒 → 表達情緒 → 練習調節 → 進入日常生活
+        </div>
+      </section>
+    </div>
+
+    <div id="tab7" class="tab-panel">
+      <section>
+        <h2>七、社會影響力</h2>
+
+        <div class="grid-3">
+          <div class="card">
+            <h4>短期影響</h4>
+            <ul>
+              <li>提升幼兒辨識基本情緒的能力。</li>
+              <li>增加孩子表達情緒的意願。</li>
+              <li>降低情緒爆發時的無助感與混亂感。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>中期影響</h4>
+            <ul>
+              <li>改善親子互動品質與溝通方式。</li>
+              <li>降低日常衝突中的情緒誤解。</li>
+              <li>讓家庭建立可持續使用的情緒語言。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4>長期影響</h4>
+            <ul>
+              <li>促進幼兒情緒調節能力與心理韌性。</li>
+              <li>提升早期情緒教育的社會重視程度。</li>
+              <li>降低未來因情緒失調產生的人際與教育成本。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab8" class="tab-panel">
+      <section>
+        <h2>八、結語</h2>
+        <p>
+          《我的情緒百寶箱》不只是希望孩子認識幾個情緒名詞，而是希望他們在被理解的過程中，慢慢學會理解自己；也不只是教家長如何安撫孩子，而是讓家長和孩子一起建立可以陪伴彼此的情緒語言。
+        </p>
+
+        <div class="highlight" style="background: linear-gradient(135deg, var(--wine), #7f1831);">
+          <strong>計畫核心價值：</strong><br />
+          我們不是在教孩子不要哭、不要生氣，而是讓他們知道，情緒可以被看見、被理解，也可以慢慢學會和它相處。
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Social Design Project © 2026 ｜《我的情緒百寶箱》
+  </footer>
+
+  <script>
+    function showTab(tabId, buttonElement) {
+      const panels = document.querySelectorAll('.tab-panel');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      panels.forEach(panel => panel.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+      buttonElement.classList.add('active');
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+</body>
+</html>
